@@ -1,0 +1,39 @@
+# Smithery configuration for Superlógica Condomínios
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_superlogica
+
+name: superlogica-mcp
+displayName: "Superlógica Condomínios"
+description: >
+  Converse com o **Superlógica Condomínios** da sua administradora a partir do Claude, do ChatGPT ou de qualquer cliente MCP. Roda sobre a **API oficial da Superlógica**, com o **par de tokens da sua própria licença**. A cunha é atravessar a **carteira inteira de uma vez**, que é o que hoje vira relatório exportado e colado em planilha: **inadimplência e cobrança** (boletos por período, por unidade, acordos e processos), **despesas e favorecidos**, **contas bancárias e movimentações**, **prestação de contas e balancetes**. Também escreve: cadastra cobrança e despesa, liquida, estorna, cria acordo, reserva área comum, abre ocorrência, dispara comunicado e responde solicitação. **Não afiliado à Superlógica.**
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/superlogica-mcp
+repository: https://github.com/mcp-dir/superlogica-mcp
+
+tags:
+  - superlogica
+  - condominio
+  - condo
+  - erp
+  - sindico
+  - administradora
+  - property-management
+  - brazil
+  - financeiro
+  - read-write
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_superlogica
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_superlogica/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
